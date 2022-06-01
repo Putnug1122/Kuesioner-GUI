@@ -22,7 +22,7 @@ public class KuesionerFix {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con;
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/kuesioner_1", "root", "4p34d3nt0");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/kuesioner_1", "root", "");
                 System.out.println("Koneksi Berhasil");
             System.out.println("Koneksi Berhasil");
             } catch (ClassNotFoundException ex) {
