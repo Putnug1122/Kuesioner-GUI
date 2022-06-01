@@ -10,8 +10,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -140,10 +138,12 @@ public class Login extends javax.swing.JFrame {
         String uname = username.getText();
         String password = passwordFd.getText();
         
+        DBConnection connection = new DBConnection();
+        connection.connection();
+        
+        
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/kuesioner_1", "root", "4p34d3nt0");
-            Statement smt = con.createStatement();
+            Statement smt = connection.con.createStatement();
             
             ResultSet rs = smt.executeQuery("SELECT * FROM users WHERE username = '" + uname + "' AND password = '" + password + "'");
             if(rs.next()) {
@@ -155,9 +155,7 @@ public class Login extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Login Gagal!");
             }
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Wrong Credentials");
-        } catch (SQLException ex) {
+        }  catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Wrong Credentials");
         }
     }//GEN-LAST:event_loginBtnActionPerformed
