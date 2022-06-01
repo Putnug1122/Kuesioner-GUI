@@ -27,7 +27,7 @@ public class DBConnection {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/kuesioner_1";
             String username = "root";
-            String password = "4p34d3nt0";
+            String password = "";
             con = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Gagal Terhubung");
