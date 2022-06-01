@@ -138,12 +138,11 @@ public class Login extends javax.swing.JFrame {
         String uname = username.getText();
         String password = passwordFd.getText();
         
-        DBConnection connection = new DBConnection();
-        connection.connection();
+        Connection connection = DBConnection.getConnection();
         
         
         try {
-            Statement smt = connection.con.createStatement();
+            Statement smt = connection.createStatement();
             
             ResultSet rs = smt.executeQuery("SELECT * FROM users WHERE username = '" + uname + "' AND password = '" + password + "'");
             if(rs.next()) {
