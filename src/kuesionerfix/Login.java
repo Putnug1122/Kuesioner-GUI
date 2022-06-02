@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
     }
     
     public void scaleImage() {
-        ImageIcon icon = new ImageIcon("D:\\Java Project\\KuesionerFix\\src\\kuesionerfix\\icon\\login-935679.png");
+        ImageIcon icon = new ImageIcon("C:\\Users\\Asus\\Downloads\\SEMESTER4\\PBOcode\\Kuesioner-GUI\\src\\kuesionerfix\\icon\\login-935679.png");
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(logoLogin.getWidth(), logoLogin.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);
@@ -82,7 +82,6 @@ public class Login extends javax.swing.JFrame {
         username.setText("Username");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Login");
 
         loginBtn.setBackground(new java.awt.Color(153, 153, 255));
