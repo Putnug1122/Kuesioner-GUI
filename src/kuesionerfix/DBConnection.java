@@ -15,8 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class DBConnection {
     
-    Connection con = null;
+    private static Connection con;
     
+
     public static void main(String[] args) {
         DBConnection connection = new DBConnection();
         connection.connection();
@@ -34,5 +35,22 @@ public class DBConnection {
         }
     }
     
-    
-}
+    public static Connection getConnection() {
+        if (con == null) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                String url = "jdbc:mysql://localhost:3306/kuesioner_1";
+                String username = "root";
+                String password = "";
+                con = DriverManager.getConnection(url, username, password);
+                return con;
+            } catch (ClassNotFoundException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "Gagal Terhubung");
+                return null;
+            }
+
+        }
+        return con;
+    }
+ }
+

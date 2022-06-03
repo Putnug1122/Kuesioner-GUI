@@ -22,7 +22,7 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
     }
 
     public void scaleImage() {
-        ImageIcon icon = new ImageIcon("C:\\Users\\Asus\\Downloads\\SEMESTER4\\PBOcode\\Kuesioner-GUI\\src\\kuesionerfix\\icon\\PngItem_786293.png");
+        ImageIcon icon = new ImageIcon("C:/Users/Asus/Downloads/SEMESTER4/PBOcode/Kuesioner-GUI/src/kuesionerfix/icon/PngItem_786293.png");
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(avatar.getWidth(), avatar.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);

@@ -29,7 +29,9 @@ public class Login extends javax.swing.JFrame {
     }
     
     public void scaleImage() {
+
         ImageIcon icon = new ImageIcon("C:\\Users\\Asus\\Downloads\\SEMESTER4\\PBOcode\\Kuesioner-GUI\\src\\kuesionerfix\\icon\\login-935679.png");
+
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(logoLogin.getWidth(), logoLogin.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);
@@ -62,17 +64,17 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
                 .addComponent(logoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(183, Short.MAX_VALUE)
                 .addComponent(logoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGap(142, 142, 142))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, -1));
@@ -137,12 +139,11 @@ public class Login extends javax.swing.JFrame {
         String uname = username.getText();
         String password = passwordFd.getText();
         
-        DBConnection connection = new DBConnection();
-        connection.connection();
+        Connection connection = DBConnection.getConnection();
         
         
         try {
-            Statement smt = connection.con.createStatement();
+            Statement smt = connection.createStatement();
             
             ResultSet rs = smt.executeQuery("SELECT * FROM users WHERE username = '" + uname + "' AND password = '" + password + "'");
             if(rs.next()) {
