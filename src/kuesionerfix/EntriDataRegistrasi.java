@@ -145,11 +145,12 @@ public class EntriDataRegistrasi extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(205, 205, 205));
 
-        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel3.setBackground(new java.awt.Color(0, 102, 255));
 
         greetings1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        greetings1.setForeground(new java.awt.Color(255, 255, 255));
         greetings1.setText("Daftar Registrasi");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -246,7 +247,7 @@ public class EntriDataRegistrasi extends javax.swing.JFrame {
                 .addGap(91, 91, 91))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel4.setBackground(new java.awt.Color(51, 153, 255));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
