@@ -5,13 +5,22 @@
 package kuesionerfix;
 
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ASUS
  */
 public class EditDataRegistrasi extends javax.swing.JFrame {
+    
+    private Map<String, String> provinsi = new HashMap<String, String>();
 
     /**
      * Creates new form MenuUtama
@@ -22,11 +31,43 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
     }
 
     public void scaleImage() {
-        ImageIcon icon = new ImageIcon("C:\\Users\\Asus\\Downloads\\SEMESTER4\\PBOcode\\Kuesioner-GUI\\src\\kuesionerfix\\icon\\PngItem_786293.png");
+        ImageIcon icon = new ImageIcon("./src/kuesionerfix/icon/PngItem_786293.png");
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(avatar.getWidth(), avatar.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(imgScale);
         avatar.setIcon(scaledIcon);
+    }
+    
+    public void loadComboboxProv() {
+        String sql = "SELECT * FROM provinsi";
+        Connection connection = DBConnection.getConnection();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                comboBoxProv.addItem(rs.getString("nama"));
+                provinsi.put(rs.getString("nama"), rs.getString("id_prov"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
+        }
+    }
+    
+    public void loadComboboxKabupaten() {
+        String kodeProv = provinsi.get(comboBoxProv.getSelectedItem());
+        comboBoxKabupaten.removeAllItems();
+        String sql = "SELECT * FROM kabupaten WHERE id_prov = " + kodeProv;
+        Connection connection = DBConnection.getConnection();
+        comboBoxKabupaten.addItem("-- Pilih Kabupaten --");
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                comboBoxKabupaten.addItem(rs.getString("nama"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
+        }
     }
 
     /**
@@ -53,9 +94,9 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        comboBoxTahun = new javax.swing.JComboBox<>();
+        comboBoxKabupaten = new javax.swing.JComboBox<>();
+        comboBoxProv = new javax.swing.JComboBox<>();
         jPanel11 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -142,6 +183,7 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         getContentPane().add(sidebarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 650));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -156,16 +198,32 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Kabupaten");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxTahun.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Tahun --", "2016", "2017", "2018", "2019", "2020", "2021", "2022" }));
+        comboBoxTahun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox7ActionPerformed(evt);
+                comboBoxTahunActionPerformed(evt);
             }
         });
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxKabupaten.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Kabupaten --" }));
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxProv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Provinsi --" }));
+        loadComboboxProv();
+        comboBoxProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxProvActionPerformed(evt);
+            }
+        });
+        comboBoxProv.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                comboBoxProvPropertyChange(evt);
+            }
+        });
+        comboBoxProv.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                comboBoxProvVetoableChange(evt);
+            }
+        });
 
         jPanel11.setBackground(new java.awt.Color(0, 102, 102));
         jPanel11.setForeground(new java.awt.Color(0, 153, 153));
@@ -203,9 +261,9 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxProv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxTahun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxKabupaten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(152, 152, 152))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,14 +279,14 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
                         .addComponent(jLabel13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboBoxTahun, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxProv, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxKabupaten, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,7 +334,7 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addContainerGap(387, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab3", jPanel4);
@@ -300,9 +358,22 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_entriDataTextMouseClicked
 
-    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+    private void comboBoxTahunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTahunActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox7ActionPerformed
+    }//GEN-LAST:event_comboBoxTahunActionPerformed
+
+    private void comboBoxProvPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxProvPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxProvPropertyChange
+
+    private void comboBoxProvVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_comboBoxProvVetoableChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxProvVetoableChange
+
+    private void comboBoxProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxProvActionPerformed
+        // TODO add your handling code here:
+        loadComboboxKabupaten();
+    }//GEN-LAST:event_comboBoxProvActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,12 +541,12 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
     private javax.swing.JLabel avatar;
     private javax.swing.JPanel berandaPanel;
     private javax.swing.JLabel berandaText;
+    private javax.swing.JComboBox<String> comboBoxKabupaten;
+    private javax.swing.JComboBox<String> comboBoxProv;
+    private javax.swing.JComboBox<String> comboBoxTahun;
     private javax.swing.JPanel entriDataPanel;
     private javax.swing.JLabel entriDataText;
     private javax.swing.JLabel greetings;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;

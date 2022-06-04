@@ -327,9 +327,9 @@
                           </Group>
                           <EmptySpace pref="196" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jComboBox2" alignment="1" min="-2" pref="228" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="1" min="-2" pref="228" max="-2" attributes="0"/>
-                              <Component id="jComboBox3" alignment="1" min="-2" pref="228" max="-2" attributes="0"/>
+                              <Component id="comboBoxProv" alignment="1" min="-2" pref="228" max="-2" attributes="0"/>
+                              <Component id="comboBoxTahun" alignment="1" min="-2" pref="228" max="-2" attributes="0"/>
+                              <Component id="comboBoxKabupaten" alignment="1" min="-2" pref="228" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
                       </Group>
@@ -340,17 +340,17 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBox1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="comboBoxTahun" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox2" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="comboBoxProv" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jComboBox3" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="comboBoxKabupaten" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -385,14 +385,19 @@
                     <Property name="text" type="java.lang.String" value="Kabupaten"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="comboBoxTahun">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="9">
+                        <StringItem index="0" value="-- Pilih Tahun --"/>
+                        <StringItem index="1" value="2015"/>
+                        <StringItem index="2" value="2016"/>
+                        <StringItem index="3" value="2017"/>
+                        <StringItem index="4" value="2018"/>
+                        <StringItem index="5" value="2019"/>
+                        <StringItem index="6" value="2020"/>
+                        <StringItem index="7" value="2021"/>
+                        <StringItem index="8" value="2022"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -400,29 +405,27 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox2">
+                <Component class="javax.swing.JComboBox" name="comboBoxProv">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="1">
+                        <StringItem index="0" value="-- Pilih Provinsi --"/>
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxProvActionPerformed"/>
+                  </Events>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="loadComboboxProv();"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox3">
+                <Component class="javax.swing.JComboBox" name="comboBoxKabupaten">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="1">
+                        <StringItem index="0" value="-- Pilih Kabupaten --"/>
                       </StringArray>
                     </Property>
                   </Properties>
