@@ -6,6 +6,7 @@ package kuesionerfix;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -120,6 +121,11 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
         jTextField4.setText("jTextField4");
 
         jPanel9.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -368,6 +374,13 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
     private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox6ActionPerformed
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        // TODO add your handling code here:
+        EditDataPerusahaan2 editDataPerusahaan2 = new EditDataPerusahaan2();
+        editDataPerusahaan2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        editDataPerusahaan2.setVisible(true);
+    }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
      * @param args the command line arguments
