@@ -34,7 +34,7 @@ public class UserRepo {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 UserLogin.setUserLogin(rs.getInt("id"), rs.getString("name"), rs.getString("username"), 
-                        rs.getString("password"), rs.getString("id_prov"), rs.getInt("role"));
+                        rs.getString("id_prov"), rs.getInt("role"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserRepo.class.getName()).log(Level.SEVERE, null, ex);

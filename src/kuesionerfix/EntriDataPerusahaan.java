@@ -222,6 +222,11 @@ public class EntriDataPerusahaan extends javax.swing.JFrame {
         jLabel3.setText("Kabupaten");
 
         comboBoxTahun.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Tahun --", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022" }));
+        comboBoxTahun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxTahunActionPerformed(evt);
+            }
+        });
 
         comboBoxProv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Provinsi --" }));
         loadComboboxProv();
@@ -377,6 +382,10 @@ public class EntriDataPerusahaan extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadComboboxKabupaten();
     }//GEN-LAST:event_comboBoxProvActionPerformed
+
+    private void comboBoxTahunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTahunActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxTahunActionPerformed
 
     /**
      * @param args the command line arguments

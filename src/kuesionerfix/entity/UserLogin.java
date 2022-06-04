@@ -13,7 +13,6 @@ public class UserLogin {
     private static int id;
     private static String name;
     private static String username;
-    private static String password;
     private static String idProv;
     private static int role;
 
@@ -21,13 +20,19 @@ public class UserLogin {
 
     }
 
-    public static void setUserLogin(int id, String name, String username, String password, String idProv, int role) {
+    public static void setUserLogin(int id, String name, String username, String idProv, int role) {
         UserLogin.id = id;
         UserLogin.name = name;
         UserLogin.username = username;
-        UserLogin.password = password;
         UserLogin.idProv = idProv;
         UserLogin.role = role;
+    }
+    
+    public static void destroyUserLogin() {
+        UserLogin.id = 0;
+        UserLogin.name = "";
+        UserLogin.idProv = "";
+        UserLogin.role = 0;
     }
 
     public static int getId() {
@@ -52,14 +57,6 @@ public class UserLogin {
 
     public static void setUsername(String username) {
         UserLogin.username = username;
-    }
-
-    public static String getPassword() {
-        return password;
-    }
-
-    public static void setPassword(String password) {
-        UserLogin.password = password;
     }
 
     public static String getIdProv() {

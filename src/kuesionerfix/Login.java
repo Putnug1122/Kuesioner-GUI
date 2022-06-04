@@ -13,13 +13,14 @@ import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import kuesionerfix.entity.UserLogin;
 
 /**
  *
  * @author ASUS
  */
 public class Login extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Login
      */
@@ -147,6 +148,7 @@ public class Login extends javax.swing.JFrame {
             
             ResultSet rs = smt.executeQuery("SELECT * FROM users WHERE username = '" + uname + "' AND password = '" + password + "'");
             if(rs.next()) {
+                UserLogin.setUserLogin(rs.getInt("id"), rs.getString("name"), rs.getString("username"), rs.getString("id_prov"), rs.getInt("role"));
                 JOptionPane.showMessageDialog(null, "Login Berhasil");
                 MenuUtama menuUtama =  new MenuUtama();
                 menuUtama.setVisible(true);
