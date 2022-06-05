@@ -944,7 +944,7 @@ public class MenuUtama extends javax.swing.JFrame {
             periodeData = Integer.parseInt(comboBoxTahun.getSelectedItem().toString());
             if (provinsi.contains("--") && kabupaten.contains("--"))
                 tabelRegistrasi.searchTabelRegistrasiByYear(periodeData);
-            else if (!provinsi.contains("--"))
+            else if (!provinsi.contains("--") && kabupaten.contains("--"))
                 tabelRegistrasi.searchTabelRegistrasiByYearProv(periodeData, provinsi);
             else
                 tabelRegistrasi.searchTabelRegistrasi(periodeData, provinsi, kabupaten);
