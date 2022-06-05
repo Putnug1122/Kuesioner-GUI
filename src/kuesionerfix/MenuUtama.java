@@ -937,16 +937,27 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
+        int periodeData;
+        String provinsi = comboBoxProv.getSelectedItem().toString();
+        String kabupaten = comboBoxKabupaten.getSelectedItem().toString();
         try {
-            int periodeData = Integer.parseInt(comboBoxTahun.getSelectedItem().toString());
-            String provinsi = comboBoxProv.getSelectedItem().toString();
-            String kabupaten = comboBoxKabupaten.getSelectedItem().toString();
-            if (provinsi.contains("--"))
-                tabelRegistrasi.loadTableRegistrasi();
-            else 
+            periodeData = Integer.parseInt(comboBoxTahun.getSelectedItem().toString());
+            if (provinsi.contains("--") && kabupaten.contains("--"))
+                tabelRegistrasi.searchTabelRegistrasiByYear(periodeData);
+            else if (!provinsi.contains("--"))
+                tabelRegistrasi.searchTabelRegistrasiByYearProv(periodeData, provinsi);
+            else
                 tabelRegistrasi.searchTabelRegistrasi(periodeData, provinsi, kabupaten);
         } catch (Exception e) {
-            tabelRegistrasi.loadTableRegistrasi();
+            if (!provinsi.contains("--") && !kabupaten.contains("--")) {
+                tabelRegistrasi.searchTabelRegistrasiByProvKab(provinsi, kabupaten);
+            } else if (!provinsi.contains("--")) {
+                tabelRegistrasi.searchTabelRegistrasiByProv(provinsi);
+            } else if (!kabupaten.contains("--")) {
+                tabelRegistrasi.searchTabelRegistrasiByKab(kabupaten);
+            } else {
+                tabelRegistrasi.loadTableRegistrasi();
+            }
         }
     }//GEN-LAST:event_jLabel11MouseClicked
 

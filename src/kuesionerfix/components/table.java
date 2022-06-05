@@ -61,6 +61,68 @@ public class table extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
+    
+    public void searchTabelRegistrasiByYear(int periode_data) {
+        String sql = "SELECT * FROM registrasi WHERE periode_data = '" + periode_data + "'";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    public void searchTabelRegistrasiByProv(String provinsi) {
+        String sql = "SELECT * FROM registrasi WHERE provinsi = '" + provinsi + "'";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    public void searchTabelRegistrasiByKab(String kabupaten) {
+        String sql = "SELECT * FROM registrasi WHERE  kabupaten = '" + kabupaten + "'";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    public void searchTabelRegistrasiByProvKab(String provinsi, String kabupaten) {
+        String sql = "SELECT * FROM registrasi "
+                + "WHERE provinsi = '" + provinsi + "' AND kabupaten = '" + kabupaten + "'";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    public void searchTabelRegistrasiByYearProv(int periode_data, String provinsi) {
+        String sql = "SELECT * FROM registrasi "
+                + "WHERE periode_data = '" + periode_data + "' AND provinsi = '" + provinsi + "'";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
