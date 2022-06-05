@@ -10,11 +10,11 @@ package kuesionerfix.entity;
  */
 public class UserLogin {
 
-    private static int id;
-    private static String name;
-    private static String username;
-    private static String idProv;
-    private static String role;
+    private static int id = -1;
+    private static String name = "";
+    private static String username = "";
+    private static String idProv = "";
+    private static String role = "";
 
     public UserLogin() {
 

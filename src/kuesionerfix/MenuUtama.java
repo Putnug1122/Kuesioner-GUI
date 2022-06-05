@@ -482,6 +482,11 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuesionerfix/icon/search.png"))); // NOI18N
         jLabel11.setText("Cari");
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -925,6 +930,19 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
         String sql = "SELECT * FROM perusahaan WHERE ";
     }//GEN-LAST:event_jPanel20MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        try {
+            int tahun = Integer.parseInt(comboBoxTahun.getSelectedItem().toString());
+            String provinsi = comboBoxProv.getSelectedItem().toString();
+            System.out.println(tahun + provinsi);
+            String sql = "";
+            Connection connection = DBConnection.getConnection();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments

@@ -46,7 +46,7 @@ public class EntriDataRegistrasi extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 comboBoxProv.addItem(rs.getString("nama"));
-                provinsi.put(rs.getString("nama"), rs.getString("id_prov"));
+                provinsi.put(rs.getString("nama"), rs.getString("id"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
