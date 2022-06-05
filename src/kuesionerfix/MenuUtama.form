@@ -810,7 +810,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel11MouseClicked"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="if (UserLogin.getRole() != 1)&#xa;    jPanel11.setVisible(false);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="if (!UserLogin.getRole().equals(&quot;admin&quot;))&#xa;    jPanel11.setVisible(false);"/>
               </AuxValues>
 
               <Layout>
@@ -904,7 +904,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel13MouseClicked"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="if (UserLogin.getRole() != 1)&#xa;    jPanel13.setVisible(false);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="if (!UserLogin.getRole().equals(&quot;admin&quot;))&#xa;    jPanel13.setVisible(false);"/>
               </AuxValues>
 
               <Layout>

@@ -14,13 +14,13 @@ public class UserLogin {
     private static String name;
     private static String username;
     private static String idProv;
-    private static int role;
+    private static String role;
 
     public UserLogin() {
 
     }
 
-    public static void setUserLogin(int id, String name, String username, String idProv, int role) {
+    public static void setUserLogin(int id, String name, String username, String idProv, String role) {
         UserLogin.id = id;
         UserLogin.name = name;
         UserLogin.username = username;
@@ -32,7 +32,7 @@ public class UserLogin {
         UserLogin.id = 0;
         UserLogin.name = "";
         UserLogin.idProv = "";
-        UserLogin.role = 0;
+        UserLogin.role = "";
     }
 
     public static int getId() {
@@ -67,11 +67,11 @@ public class UserLogin {
         UserLogin.idProv = idProv;
     }
 
-    public static int getRole() {
+    public static String getRole() {
         return role;
     }
 
-    public static void setRole(int role) {
+    public static void setRole(String role) {
         UserLogin.role = role;
     }
 }

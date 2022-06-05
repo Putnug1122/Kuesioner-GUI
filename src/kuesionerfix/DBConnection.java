@@ -6,8 +6,11 @@ package kuesionerfix;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import kuesionerfix.entity.UserLogin;
 
 /**
  *
@@ -19,19 +22,17 @@ public class DBConnection {
     
 
     public static void main(String[] args) {
-        DBConnection connection = new DBConnection();
-        connection.connection();
-    }
-    
-    public void connection() {
+        String sql = "SELECT * FROM users WHERE username = 'admin'";
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/kuesioner_1";
-            String username = "root";
-            String password = "";
-            con = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Gagal Terhubung");
+            Connection connection = DBConnection.getConnection();
+            Statement smt = connection.createStatement();
+            
+            ResultSet rs = smt.executeQuery(sql);
+            if (rs.next()) {
+                UserLogin.setUserLogin(rs.getInt("id"), rs.getString("name"), rs.getString("username"), rs.getString("id_prov"), rs.getString("role"));
+            }
+        }  catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
     

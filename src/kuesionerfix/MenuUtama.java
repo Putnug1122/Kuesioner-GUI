@@ -23,7 +23,7 @@ import kuesionerfix.entity.UserLogin;
 public class MenuUtama extends javax.swing.JFrame {
 
     private Map<String, String> provinsi = new HashMap<String, String>();
-    private Map<String, String> provinsi1 = new HashMap<String, String>();
+    private Map<String, String> kabupaten = new HashMap<String, String>();
 
 
     /**
@@ -45,16 +45,16 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     public void loadComboboxProv() {
-        String sql = "SELECT * FROM provinsi";
+        String sql = "SELECT p.*, k.* FROM provinsi p, kabupaten k";
         Connection connection = DBConnection.getConnection();
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                comboBoxProv.addItem(rs.getString("nama"));
-                comboBoxProv1.addItem(rs.getString("nama"));
-                provinsi.put(rs.getString("nama"), rs.getString("id_prov"));
-                provinsi1.put(rs.getString("nama"), rs.getString("id_prov"));
+                comboBoxProv.addItem(rs.getString("p.nama"));
+                comboBoxProv1.addItem(rs.getString("p.nama"));
+                provinsi.put(rs.getString("p.nama"), rs.getString("p.id"));
+                kabupaten.put(rs.getString("k.nama"), rs.getString("k.id_kab"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
@@ -79,7 +79,7 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     public void loadComboboxKabupaten1() {
-        String kodeProv = provinsi1.get(comboBoxProv1.getSelectedItem());
+        String kodeProv = provinsi.get(comboBoxProv1.getSelectedItem());
         comboBoxKabupaten1.removeAllItems();
         String sql = "SELECT * FROM kabupaten WHERE id_prov = " + kodeProv;
         Connection connection = DBConnection.getConnection();
@@ -662,9 +662,9 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap(239, Short.MAX_VALUE))
         );
 
-        if (UserLogin.getRole() != 1)
+        if (!UserLogin.getRole().equals("admin"))
         jPanel11.setVisible(false);
-        if (UserLogin.getRole() != 1)
+        if (!UserLogin.getRole().equals("admin"))
         jPanel13.setVisible(false);
 
         jTabbedPane1.addTab("tab1", jPanel3);
@@ -923,7 +923,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jPanel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel20MouseClicked
         // TODO add your handling code here:
-        
+        String sql = "SELECT * FROM perusahaan WHERE ";
     }//GEN-LAST:event_jPanel20MouseClicked
 
     /**
@@ -980,10 +980,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1001,10 +998,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;

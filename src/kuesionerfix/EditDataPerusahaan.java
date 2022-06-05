@@ -5,20 +5,80 @@
 package kuesionerfix;
 
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ASUS
  */
 public class EditDataPerusahaan extends javax.swing.JFrame {
-
+    
+    private Map<String, String> provinsi = new HashMap<String, String>();
+    private Map<String, String> kabupaten = new HashMap<String, String>();
+    
     /**
      * Creates new form MenuUtama
      */
     public EditDataPerusahaan() {
         initComponents();
+    }
+    
+    public void loadComboboxProv() {
+        String sql = "SELECT * FROM provinsi";
+        Connection connection = DBConnection.getConnection();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                comboBoxProv.addItem(rs.getString("nama"));
+                provinsi.put(rs.getString("nama"), rs.getString("id"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
+        }
+    }
+
+    public void loadComboboxKabupaten() {
+        String kodeProv = provinsi.get(comboBoxProv.getSelectedItem());
+        comboBoxKabupaten.removeAllItems();
+        String sql = "SELECT * FROM kabupaten WHERE id_prov = " + kodeProv;
+        Connection connection = DBConnection.getConnection();
+        comboBoxKabupaten.addItem("-- Pilih Kabupaten --");
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                comboBoxKabupaten.addItem(rs.getString("nama"));
+                kabupaten.put(rs.getString("nama"), rs.getString("id_kab"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
+        }
+    }
+    
+    public void loadComboboxKecamatan() {
+        String kodeKab = kabupaten.get(comboBoxKabupaten.getSelectedItem());
+        comboBoxKecamatan.removeAllItems();
+        String sql = "SELECT * FROM kecamatan WHERE id_kab = " + kodeKab;
+        Connection connection = DBConnection.getConnection();
+        comboBoxKecamatan.addItem("-- Pilih Kecamatan --");
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                comboBoxKecamatan.addItem(rs.getString("nama"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
+        }
     }
 
 
@@ -43,9 +103,9 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        comboBoxKabupaten = new javax.swing.JComboBox<>();
+        comboBoxKecamatan = new javax.swing.JComboBox<>();
+        comboBoxProv = new javax.swing.JComboBox<>();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
@@ -104,15 +164,19 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
 
         jTextField2.setText("jTextField2");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox6.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxKabupaten.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Kabupaten --" }));
+        comboBoxKabupaten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox6ActionPerformed(evt);
+                comboBoxKabupatenActionPerformed(evt);
+            }
+        });
+
+        comboBoxKecamatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Kecamatan --" }));
+
+        comboBoxProv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Provinsi --" }));
+        comboBoxProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxProvActionPerformed(evt);
             }
         });
 
@@ -230,10 +294,10 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
                                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel7Layout.createSequentialGroup()
                                             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jComboBox4, javax.swing.GroupLayout.Alignment.LEADING, 0, 185, Short.MAX_VALUE)
-                                                .addComponent(jComboBox6, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(comboBoxKabupaten, javax.swing.GroupLayout.Alignment.LEADING, 0, 185, Short.MAX_VALUE)
+                                                .addComponent(comboBoxProv, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(comboBoxKecamatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,16 +339,16 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxProv, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxKabupaten, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxKecamatan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,6 +389,8 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29))))
         );
+
+        loadComboboxProv();
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -371,9 +437,10 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+    private void comboBoxProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxProvActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox6ActionPerformed
+        loadComboboxKabupaten();
+    }//GEN-LAST:event_comboBoxProvActionPerformed
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         // TODO add your handling code here:
@@ -381,6 +448,11 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
         editDataPerusahaan2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         editDataPerusahaan2.setVisible(true);
     }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void comboBoxKabupatenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxKabupatenActionPerformed
+        // TODO add your handling code here:
+        loadComboboxKecamatan();
+    }//GEN-LAST:event_comboBoxKabupatenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -449,10 +521,10 @@ public class EditDataPerusahaan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboBoxKabupaten;
+    private javax.swing.JComboBox<String> comboBoxKecamatan;
+    private javax.swing.JComboBox<String> comboBoxProv;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
