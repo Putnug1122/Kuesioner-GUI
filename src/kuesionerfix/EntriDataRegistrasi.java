@@ -182,7 +182,7 @@ public class EntriDataRegistrasi extends javax.swing.JFrame {
 
         sidebarPanel.add(logoutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 570, 110, 50));
 
-        getContentPane().add(sidebarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 650));
+        getContentPane().add(sidebarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 660));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
