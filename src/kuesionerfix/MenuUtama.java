@@ -941,9 +941,12 @@ public class MenuUtama extends javax.swing.JFrame {
             int periodeData = Integer.parseInt(comboBoxTahun.getSelectedItem().toString());
             String provinsi = comboBoxProv.getSelectedItem().toString();
             String kabupaten = comboBoxKabupaten.getSelectedItem().toString();
-            tabelRegistrasi.searchTabelRegistrasi(periodeData, provinsi, kabupaten);
+            if (provinsi.contains("--"))
+                tabelRegistrasi.loadTableRegistrasi();
+            else 
+                tabelRegistrasi.searchTabelRegistrasi(periodeData, provinsi, kabupaten);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            tabelRegistrasi.loadTableRegistrasi();
         }
     }//GEN-LAST:event_jLabel11MouseClicked
 
