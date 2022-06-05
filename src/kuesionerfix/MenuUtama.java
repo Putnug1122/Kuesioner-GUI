@@ -15,6 +15,8 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import kuesionerfix.entity.UserLogin;
 
 /**
@@ -616,6 +618,11 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuesionerfix/icon/plus.png"))); // NOI18N
         jLabel14.setText("Edit");
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -634,6 +641,12 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        tabelRegistrasi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelRegistrasiMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -650,7 +663,7 @@ public class MenuUtama extends javax.swing.JFrame {
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tabelRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(1349, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -904,9 +917,6 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
         // TODO add your handling code here:
-        EditDataRegistrasi editDataRegistrasi = new EditDataRegistrasi();
-        editDataRegistrasi.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        editDataRegistrasi.setVisible(true);
     }//GEN-LAST:event_jPanel13MouseClicked
 
     private void jPanel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel16MouseClicked
@@ -964,6 +974,17 @@ public class MenuUtama extends javax.swing.JFrame {
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+        EditDataRegistrasi editDataRegistrasi = new EditDataRegistrasi(tabelRegistrasi.getIdRegisterSelected());
+        editDataRegistrasi.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        editDataRegistrasi.setVisible(true);
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void tabelRegistrasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelRegistrasiMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelRegistrasiMouseClicked
 
     /**
      * @param args the command line arguments

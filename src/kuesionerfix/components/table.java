@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import kuesionerfix.DBConnection;
 import net.proteanit.sql.DbUtils;
 
@@ -23,20 +25,22 @@ import net.proteanit.sql.DbUtils;
  */
 public class table extends javax.swing.JPanel {
 
+    int idRegisterSelected;
+
     /**
      * Creates new form table
      */
     public table() {
         initComponents();
-        
+
         jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         jTable1.getTableHeader().setOpaque(false);
         jTable1.getTableHeader().setBackground(new Color(32, 136, 203));
         jTable1.getTableHeader().setForeground(new Color(255, 255, 255));
         jTable1.setRowHeight(25);
-        
+
     }
-    
+
     public void loadTableRegistrasi() {
         String sql = "SELECT * FROM registrasi";
         try {
@@ -48,7 +52,7 @@ public class table extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     public void searchTabelRegistrasi(int periode_data, String provinsi, String kabupaten) {
         String sql = "SELECT * FROM registrasi "
                 + "WHERE periode_data = '" + periode_data + "' AND provinsi = '" + provinsi + "' AND kabupaten = '" + kabupaten + "'";
@@ -61,7 +65,7 @@ public class table extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     public void searchTabelRegistrasiByYear(int periode_data) {
         String sql = "SELECT * FROM registrasi WHERE periode_data = '" + periode_data + "'";
         try {
@@ -73,7 +77,7 @@ public class table extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     public void searchTabelRegistrasiByProv(String provinsi) {
         String sql = "SELECT * FROM registrasi WHERE provinsi = '" + provinsi + "'";
         try {
@@ -85,7 +89,7 @@ public class table extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     public void searchTabelRegistrasiByKab(String kabupaten) {
         String sql = "SELECT * FROM registrasi WHERE  kabupaten = '" + kabupaten + "'";
         try {
@@ -97,7 +101,7 @@ public class table extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     public void searchTabelRegistrasiByProvKab(String provinsi, String kabupaten) {
         String sql = "SELECT * FROM registrasi "
                 + "WHERE provinsi = '" + provinsi + "' AND kabupaten = '" + kabupaten + "'";
@@ -110,7 +114,7 @@ public class table extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     public void searchTabelRegistrasiByYearProv(int periode_data, String provinsi) {
         String sql = "SELECT * FROM registrasi "
                 + "WHERE periode_data = '" + periode_data + "' AND provinsi = '" + provinsi + "'";
@@ -151,6 +155,11 @@ public class table extends javax.swing.JPanel {
         jTable1.setRowHeight(25);
         jTable1.setSelectionBackground(new java.awt.Color(0, 153, 255));
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -170,6 +179,29 @@ public class table extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        int id = (int) dtm.getValueAt(jTable1.getSelectedRow(), 0);
+        this.idRegisterSelected = id;
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    public int getIdRegisterSelected() {
+        return idRegisterSelected;
+    }
+
+    public void setIdRegisterSelected(int idRegisterSelected) {
+        this.idRegisterSelected = idRegisterSelected;
+    }
+
+    public JTable getjTable1() {
+        return jTable1;
+    }
+
+    public void setjTable1(JTable jTable1) {
+        this.jTable1 = jTable1;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

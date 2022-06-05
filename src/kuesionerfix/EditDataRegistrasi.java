@@ -4,14 +4,14 @@
  */
 package kuesionerfix;
 
-import java.awt.Image;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ImageIcon;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,12 +21,15 @@ import javax.swing.JOptionPane;
 public class EditDataRegistrasi extends javax.swing.JFrame {
     
     private Map<String, String> provinsi = new HashMap<String, String>();
+    private int idRegistrasi;
 
     /**
      * Creates new form MenuUtama
      */
-    public EditDataRegistrasi() {
+    public EditDataRegistrasi(int idRegistrasi) {
         initComponents();
+        this.idRegistrasi = idRegistrasi;
+        loadRegistrationEdit();
     }
     
     public void loadComboboxProv() {
@@ -101,7 +104,8 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Kabupaten");
 
-        comboBoxTahun.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Tahun --", "2016", "2017", "2018", "2019", "2020", "2021", "2022" }));
+        comboBoxTahun.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Tahun --", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022" }));
+        comboBoxTahun.setSelectedItem("2022");
         comboBoxTahun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxTahunActionPerformed(evt);
@@ -137,6 +141,11 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuesionerfix/icon/plus.png"))); // NOI18N
         jLabel16.setText("Edit");
         jLabel16.setToolTipText("");
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -262,6 +271,48 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         loadComboboxKabupaten();
     }//GEN-LAST:event_comboBoxProvActionPerformed
 
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        // TODO add your handling code here:
+        try {
+            int periodeData = Integer.parseInt(comboBoxTahun.getSelectedItem().toString());
+            String provinsi = comboBoxProv.getSelectedItem().toString();
+            String kabupaten = comboBoxKabupaten.getSelectedItem().toString();
+            String sql = "UPDATE registrasi "
+                    + "set periode_data = '" + periodeData + "', "
+                    + "provinsi = '" + provinsi + "', "
+                    + "kabupaten = '" + kabupaten + "' "
+                    + "WHERE id = '" + idRegistrasi + "'";
+            try {
+                Connection connection = DBConnection.getConnection();
+                Statement stmt = connection.createStatement();
+                stmt.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null, "Data registrasi berhasil diupdate");
+                this.dispose();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Semua field harus diisi");
+        }
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    public void loadRegistrationEdit() {
+        String sql = "SELECT * FROM registrasi WHERE id = '" + idRegistrasi + "'";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                comboBoxTahun.setSelectedItem(String.format("%d", rs.getInt("periode_data")));
+                comboBoxProv.setSelectedItem(rs.getString("provinsi"));
+                comboBoxKabupaten.setSelectedItem(rs.getString("kabupaten"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EditDataRegistrasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -271,6 +322,7 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -419,7 +471,7 @@ public class EditDataRegistrasi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditDataRegistrasi().setVisible(true);
+                new EditDataRegistrasi(1).setVisible(true);
             }
         });
     }
