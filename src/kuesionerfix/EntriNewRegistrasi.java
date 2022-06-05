@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author ASUS
  */
 public class EntriNewRegistrasi extends javax.swing.JFrame {
-    
+
     private Map<String, String> provinsi = new HashMap<String, String>();
 
     /**
@@ -28,7 +28,7 @@ public class EntriNewRegistrasi extends javax.swing.JFrame {
     public EntriNewRegistrasi() {
         initComponents();
     }
-    
+
     public void loadComboboxProv() {
         String sql = "SELECT * FROM provinsi";
         Connection connection = DBConnection.getConnection();
@@ -118,6 +118,11 @@ public class EntriNewRegistrasi extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(26, 174, 159));
         jPanel11.setForeground(new java.awt.Color(0, 153, 153));
+        jPanel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel11MouseClicked(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,6 +130,11 @@ public class EntriNewRegistrasi extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuesionerfix/icon/plus.png"))); // NOI18N
         jLabel16.setText(" Create");
         jLabel16.setToolTipText("");
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel16MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -245,6 +255,38 @@ public class EntriNewRegistrasi extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadComboboxKabupaten();
     }//GEN-LAST:event_comboBoxProvActionPerformed
+
+    private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel11MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+        // TODO add your handling code here:
+        try {
+//            Masih perlu validasi nggak sih kan udah pake combobox?
+            int periodeData = Integer.parseInt(comboBoxTahun.getSelectedItem().toString());
+            String provinsi = comboBoxProv.getSelectedItem().toString();
+            String kabupaten = comboBoxKabupaten.getSelectedItem().toString();
+            String status = "belum";
+            Connection connection = DBConnection.getConnection();
+            String sql = "INSERT INTO registrasi(periode_data, provinsi, kabupaten, status)"
+                    + "VALUES('" + periodeData + "', '" + provinsi + "', '" + kabupaten + "', '" + status + "')";
+            if (!provinsi.contains("--") || !kabupaten.contains("--")) {
+                try {
+                    Statement stmt = connection.createStatement();
+                    stmt.executeUpdate(sql);
+                    JOptionPane.showMessageDialog(null, "Data registrasi berhasil diinput");
+                    this.dispose();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Semua field harus diisi");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Semua field harus diisi");
+        }
+    }//GEN-LAST:event_jLabel16MouseClicked
 
     /**
      * @param args the command line arguments
