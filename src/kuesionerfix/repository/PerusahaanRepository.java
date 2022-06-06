@@ -38,6 +38,7 @@ public class PerusahaanRepository {
       statement.setString(18, perusahaan.getPerikanan());
       statement.setString(19, perusahaan.getJenisUsahaUtama());
       statement.executeUpdate();
+      JOptionPane.showMessageDialog(null, "Data Perusahaan Berhasil Ditambahkan!");
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(null, e.getMessage());
     }

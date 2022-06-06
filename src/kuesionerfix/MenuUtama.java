@@ -37,9 +37,9 @@ public class MenuUtama extends javax.swing.JFrame {
         scaleImage();
         
         if(!UserLogin.getRole().equals("admin")){
-            jButton3.setVisible(false);
-            jButton2.setVisible(false);
-            jButton4.setVisible(false);
+            editRegisBtn.setVisible(false);
+            addRegisBtn.setVisible(false);
+            deleteRegisBtn.setVisible(false);
         } else {
             addPerusahaanBtn.setVisible(false);
             editPerusahaanBtn.setVisible(false);
@@ -150,10 +150,10 @@ public class MenuUtama extends javax.swing.JFrame {
         comboBoxKabupaten = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         tabelRegistrasi = new kuesionerfix.components.table();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        readRegisBtn = new javax.swing.JButton();
+        addRegisBtn = new javax.swing.JButton();
+        editRegisBtn = new javax.swing.JButton();
+        deleteRegisBtn = new javax.swing.JButton();
         perusahaanTab = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         greetings2 = new javax.swing.JLabel();
@@ -322,7 +322,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(51, 153, 0));
@@ -491,53 +491,53 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(247, 195, 37));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Lihat");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        readRegisBtn.setBackground(new java.awt.Color(247, 195, 37));
+        readRegisBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        readRegisBtn.setForeground(new java.awt.Color(255, 255, 255));
+        readRegisBtn.setText("Lihat");
+        readRegisBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                readRegisBtnMouseClicked(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Tambah");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        addRegisBtn.setBackground(new java.awt.Color(51, 153, 0));
+        addRegisBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addRegisBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addRegisBtn.setText("Tambah");
+        addRegisBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                addRegisBtnMouseClicked(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(51, 153, 255));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Edit");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        editRegisBtn.setBackground(new java.awt.Color(51, 153, 255));
+        editRegisBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        editRegisBtn.setForeground(new java.awt.Color(255, 255, 255));
+        editRegisBtn.setText("Edit");
+        editRegisBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                editRegisBtnMouseClicked(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        editRegisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                editRegisBtnActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 102, 102));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Hapus");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        deleteRegisBtn.setBackground(new java.awt.Color(255, 102, 102));
+        deleteRegisBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        deleteRegisBtn.setForeground(new java.awt.Color(255, 255, 255));
+        deleteRegisBtn.setText("Hapus");
+        deleteRegisBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                deleteRegisBtnMouseClicked(evt);
             }
         });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        deleteRegisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                deleteRegisBtnActionPerformed(evt);
             }
         });
 
@@ -550,13 +550,13 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addGroup(registrasiTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registrasiTabLayout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(deleteRegisBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editRegisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(addRegisBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(readRegisBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tabelRegistrasi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -570,10 +570,10 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(registrasiTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1))
+                    .addComponent(deleteRegisBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editRegisBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addRegisBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(readRegisBtn))
                 .addGap(18, 18, 18)
                 .addComponent(tabelRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(102, 102, 102))
@@ -762,19 +762,19 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelRegistrasiMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void readRegisBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_readRegisBtnMouseClicked
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(2);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_readRegisBtnMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void addRegisBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRegisBtnMouseClicked
         // TODO add your handling code here:
         EntriNewRegistrasi entriNewRegistrasi = new EntriNewRegistrasi();
         entriNewRegistrasi.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         entriNewRegistrasi.setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_addRegisBtnMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void editRegisBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editRegisBtnMouseClicked
         // TODO add your handling code here:
         if (tabelRegistrasi.getIdRegisterSelected() == 0) {
             JOptionPane.showMessageDialog(this, "Pilih registrasi terlebih dahulu");
@@ -783,9 +783,9 @@ public class MenuUtama extends javax.swing.JFrame {
         EditDataRegistrasi editDataRegistrasi = new EditDataRegistrasi(tabelRegistrasi.getIdRegisterSelected());
         editDataRegistrasi.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         editDataRegistrasi.setVisible(true);
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_editRegisBtnMouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void deleteRegisBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteRegisBtnMouseClicked
         // TODO add your handling code here:
         int idSelected = tabelRegistrasi.getIdRegisterSelected();
         if (idSelected == 0) {
@@ -803,7 +803,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
             }
         }
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_deleteRegisBtnMouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
@@ -831,9 +831,9 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void editRegisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRegisBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_editRegisBtnActionPerformed
 
     private void addPerusahaanBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPerusahaanBtnMouseClicked
         // TODO add your handling code here:
@@ -842,9 +842,9 @@ public class MenuUtama extends javax.swing.JFrame {
         perusahaan.setVisible(true);
     }//GEN-LAST:event_addPerusahaanBtnMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void deleteRegisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRegisBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_deleteRegisBtnActionPerformed
 
     private void editPerusahaanBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editPerusahaanBtnMouseClicked
         // TODO add your handling code here:
@@ -896,38 +896,30 @@ public class MenuUtama extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPerusahaanBtn;
+    private javax.swing.JButton addRegisBtn;
     private javax.swing.JLabel avatar;
     private javax.swing.JPanel berandaPanel;
     private javax.swing.JPanel berandaTab;
     private javax.swing.JLabel berandaText;
     private javax.swing.JComboBox<String> comboBoxKabupaten;
-    private javax.swing.JComboBox<String> comboBoxKabupaten2;
     private javax.swing.JComboBox<String> comboBoxKecamatan;
     private javax.swing.JComboBox<String> comboBoxProv;
-    private javax.swing.JComboBox<String> comboBoxProv2;
     private javax.swing.JComboBox<String> comboBoxTahun;
-    private javax.swing.JComboBox<String> comboBoxTahun2;
     private javax.swing.JButton deletePerusahaanBtn;
+    private javax.swing.JButton deleteRegisBtn;
     private javax.swing.JButton editPerusahaanBtn;
+    private javax.swing.JButton editRegisBtn;
     private javax.swing.JPanel entriDataPanel;
     private javax.swing.JLabel entriDataText;
     private javax.swing.JLabel greetings;
     private javax.swing.JLabel greetings1;
     private javax.swing.JLabel greetings2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -938,8 +930,6 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -948,6 +938,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPanel logoutPanel;
     private javax.swing.JLabel logoutText;
     private javax.swing.JPanel perusahaanTab;
+    private javax.swing.JButton readRegisBtn;
     private javax.swing.JPanel registrasiTab;
     private javax.swing.JPanel sidebarPanel;
     private kuesionerfix.components.table tabelRegistrasi;
