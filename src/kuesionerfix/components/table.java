@@ -183,7 +183,7 @@ public class table extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-        int id = (int) dtm.getValueAt(jTable1.getSelectedRow(), 0);
+        int id = Integer.parseInt(dtm.getValueAt(jTable1.getSelectedRow(), 0).toString());
         this.idRegisterSelected = id;
     }//GEN-LAST:event_jTable1MouseClicked
 
