@@ -127,7 +127,6 @@ public class EntriNewRegistrasi extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuesionerfix/icon/plus.png"))); // NOI18N
         jLabel16.setText(" Create");
         jLabel16.setToolTipText("");
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
