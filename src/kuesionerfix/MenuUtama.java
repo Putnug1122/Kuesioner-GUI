@@ -36,11 +36,14 @@ public class MenuUtama extends javax.swing.JFrame {
         initComponents();
         scaleImage();
         
-        if(UserLogin.getRole().equals("admin")){
+        if(!UserLogin.getRole().equals("admin")){
             jButton3.setVisible(false);
             jButton2.setVisible(false);
             jButton4.setVisible(false);
+        } else {
             addPerusahaanBtn.setVisible(false);
+            editPerusahaanBtn.setVisible(false);
+            deletePerusahaanBtn.setVisible(false);
         }
         table21.loadTablePerusahaan();
     }
@@ -63,7 +66,6 @@ public class MenuUtama extends javax.swing.JFrame {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 comboBoxProv.addItem(rs.getString("p.nama"));
-                comboBoxProv1.addItem(rs.getString("p.nama"));
                 provinsi.put(rs.getString("p.nama"), rs.getString("p.id"));
                 kabupaten.put(rs.getString("k.nama"), rs.getString("k.id_kab"));
             }
@@ -89,23 +91,23 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }
 
-    public void loadComboboxKabupaten1() {
-        String kodeProv = provinsi.get(comboBoxProv1.getSelectedItem());
-        comboBoxKabupaten1.removeAllItems();
-        String sql = "SELECT * FROM kabupaten WHERE id_prov = " + kodeProv;
-        Connection connection = DBConnection.getConnection();
-        comboBoxKabupaten1.addItem("-- Pilih Kabupaten --");
-        try {
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                comboBoxKabupaten1.addItem(rs.getString("nama"));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
-        }
-    }
+//    public void loadComboboxKabupaten1() {
+//        String kodeProv = provinsi.get(comboBoxProv1.getSelectedItem());
+//        comboBoxKabupaten1.removeAllItems();
+//        String sql = "SELECT * FROM kabupaten WHERE id_prov = " + kodeProv;
+//        Connection connection = DBConnection.getConnection();
+//        comboBoxKabupaten1.addItem("-- Pilih Kabupaten --");
+//        try {
+//            Statement stmt = connection.createStatement();
+//            ResultSet rs = stmt.executeQuery(sql);
+//            rs = stmt.executeQuery(sql);
+//            while (rs.next()) {
+//                comboBoxKabupaten1.addItem(rs.getString("nama"));
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,18 +158,14 @@ public class MenuUtama extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         greetings2 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        comboBoxTahun1 = new javax.swing.JComboBox<>();
-        comboBoxProv1 = new javax.swing.JComboBox<>();
-        comboBoxKabupaten1 = new javax.swing.JComboBox<>();
-        jPanel20 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
-        table21 = new kuesionerfix.components.table2();
+        comboBoxKecamatan = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
         addPerusahaanBtn = new javax.swing.JButton();
         editPerusahaanBtn = new javax.swing.JButton();
         deletePerusahaanBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table21 = new kuesionerfix.components.table2();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -324,7 +322,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(51, 153, 0));
@@ -382,7 +380,7 @@ public class MenuUtama extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-                .addContainerGap(538, Short.MAX_VALUE))
+                .addContainerGap(544, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab1", berandaTab);
@@ -560,8 +558,8 @@ public class MenuUtama extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tabelRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                    .addComponent(tabelRegistrasi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         registrasiTabLayout.setVerticalGroup(
             registrasiTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,9 +574,9 @@ public class MenuUtama extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1))
-                .addGap(93, 93, 93)
-                .addComponent(tabelRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGap(18, 18, 18)
+                .addComponent(tabelRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
         );
 
         tabelRegistrasi.loadTableRegistrasi();
@@ -609,56 +607,22 @@ public class MenuUtama extends javax.swing.JFrame {
         );
 
         jPanel19.setBackground(new java.awt.Color(255, 204, 102));
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel18.setText("Tahun");
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel19.setText("Provinsi");
+        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel20.setText("Kabupaten");
+        jLabel20.setText("Kecamatan");
 
-        comboBoxTahun1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Tahun --", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022" }));
-        comboBoxTahun1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxTahun1ActionPerformed(evt);
-            }
-        });
+        comboBoxKecamatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Kecamatan --" }));
 
-        comboBoxProv1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Provinsi --" }));
-        loadComboboxProv();
-        comboBoxProv1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxProv1ActionPerformed(evt);
-            }
-        });
-
-        comboBoxKabupaten1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Pilih Kabupaten --" }));
-
-        jPanel20.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel20.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel20.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton6.setBackground(new java.awt.Color(51, 153, 255));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Cari");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel20MouseClicked(evt);
+                jButton6MouseClicked(evt);
             }
         });
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("Tampilkan");
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -667,37 +631,25 @@ public class MenuUtama extends javax.swing.JFrame {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
                         .addComponent(jLabel20)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19)))
-                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboBoxProv1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxTahun1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxKabupaten1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(193, 193, 193))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 541, Short.MAX_VALUE)
+                        .addComponent(comboBoxKecamatan, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxTahun1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(comboBoxProv1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboBoxKabupaten1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxKecamatan, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20))
-                .addGap(17, 17, 17)
-                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                .addGap(18, 18, 18)
+                .addComponent(jButton6)
+                .addGap(90, 90, 90))
         );
 
         addPerusahaanBtn.setBackground(new java.awt.Color(51, 153, 0));
@@ -730,44 +682,43 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setViewportView(table21);
+
         javax.swing.GroupLayout perusahaanTabLayout = new javax.swing.GroupLayout(perusahaanTab);
         perusahaanTab.setLayout(perusahaanTabLayout);
         perusahaanTabLayout.setHorizontalGroup(
             perusahaanTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(perusahaanTabLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(perusahaanTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(perusahaanTabLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(perusahaanTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(perusahaanTabLayout.createSequentialGroup()
-                                .addComponent(deletePerusahaanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(editPerusahaanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(addPerusahaanBtn))
-                            .addGroup(perusahaanTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(perusahaanTabLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(table21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(perusahaanTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(perusahaanTabLayout.createSequentialGroup()
+                            .addComponent(deletePerusahaanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(editPerusahaanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(addPerusahaanBtn))
+                        .addGroup(perusahaanTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         perusahaanTabLayout.setVerticalGroup(
             perusahaanTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(perusahaanTabLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(22, 22, 22)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(perusahaanTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addPerusahaanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editPerusahaanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deletePerusahaanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(table21, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab1", perusahaanTab);
@@ -806,20 +757,6 @@ public class MenuUtama extends javax.swing.JFrame {
             login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
     }//GEN-LAST:event_logoutPanelMouseClicked
-
-    private void comboBoxTahun1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTahun1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxTahun1ActionPerformed
-
-    private void comboBoxProv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxProv1ActionPerformed
-        // TODO add your handling code here:
-        loadComboboxKabupaten1();
-    }//GEN-LAST:event_comboBoxProv1ActionPerformed
-
-    private void jPanel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel20MouseClicked
-        // TODO add your handling code here:
-        String sql = "SELECT * FROM perusahaan WHERE ";
-    }//GEN-LAST:event_jPanel20MouseClicked
 
     private void tabelRegistrasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelRegistrasiMouseClicked
         // TODO add your handling code here:
@@ -917,6 +854,10 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_deletePerusahaanBtnMouseClicked
 
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -960,11 +901,12 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPanel berandaTab;
     private javax.swing.JLabel berandaText;
     private javax.swing.JComboBox<String> comboBoxKabupaten;
-    private javax.swing.JComboBox<String> comboBoxKabupaten1;
+    private javax.swing.JComboBox<String> comboBoxKabupaten2;
+    private javax.swing.JComboBox<String> comboBoxKecamatan;
     private javax.swing.JComboBox<String> comboBoxProv;
-    private javax.swing.JComboBox<String> comboBoxProv1;
+    private javax.swing.JComboBox<String> comboBoxProv2;
     private javax.swing.JComboBox<String> comboBoxTahun;
-    private javax.swing.JComboBox<String> comboBoxTahun1;
+    private javax.swing.JComboBox<String> comboBoxTahun2;
     private javax.swing.JButton deletePerusahaanBtn;
     private javax.swing.JButton editPerusahaanBtn;
     private javax.swing.JPanel entriDataPanel;
@@ -977,13 +919,15 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -994,10 +938,12 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel logoutPanel;
     private javax.swing.JLabel logoutText;
