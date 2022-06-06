@@ -258,7 +258,7 @@
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jPanel6" pref="115" max="32767" attributes="0"/>
                           <Component id="jPanel1" max="32767" attributes="0"/>
-                          <Component id="jPanel7" alignment="1" pref="115" max="32767" attributes="0"/>
+                          <Component id="jPanel7" alignment="1" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="711" max="32767" attributes="0"/>
                   </Group>
@@ -359,7 +359,7 @@
                           <Component id="jLabel7" min="-2" pref="39" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="44" max="-2" attributes="0"/>
-                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -762,6 +762,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton3MouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton4">
@@ -807,7 +808,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel21" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel18" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel19" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -825,10 +826,10 @@
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jPanel19" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="jPanel21" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton6" min="-2" pref="46" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="table21" min="-2" pref="289" max="-2" attributes="0"/>
-                      <EmptySpace pref="200" max="32767" attributes="0"/>
+                      <EmptySpace pref="189" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1053,51 +1054,21 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel21">
+            <Component class="kuesionerfix.components.table2" name="table21">
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" red="33" type="rgb"/>
+                  <Color blue="0" green="99" red="33" type="rgb"/>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tambah"/>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel21MouseClicked"/>
-              </Events>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
-                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel22">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Tambah"/>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="kuesionerfix.components.table2" name="table21">
             </Component>
           </SubComponents>
         </Container>
