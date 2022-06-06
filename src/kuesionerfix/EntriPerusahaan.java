@@ -40,9 +40,16 @@ public class EntriPerusahaan extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupVisited = new javax.swing.ButtonGroup();
+        buttonGroupTanamanPangan = new javax.swing.ButtonGroup();
+        buttonGroupHortikultura = new javax.swing.ButtonGroup();
+        buttonGroupPeternakan = new javax.swing.ButtonGroup();
+        buttonGroupKehutanan = new javax.swing.ButtonGroup();
+        buttonGroupPerikanan = new javax.swing.ButtonGroup();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -190,6 +197,7 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Sudah dikunjungi ? ");
 
+        buttonGroupVisited.add(visitedRadio);
         visitedRadio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         visitedRadio.setForeground(new java.awt.Color(0, 0, 0));
         visitedRadio.setText("Sudah Dikunjungi");
@@ -199,6 +207,7 @@ public class EntriPerusahaan extends javax.swing.JFrame {
             }
         });
 
+        buttonGroupVisited.add(notVisitedRadio);
         notVisitedRadio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         notVisitedRadio.setForeground(new java.awt.Color(0, 0, 0));
         notVisitedRadio.setText("Belum Dikunjungi");
@@ -220,10 +229,12 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Tanaman Pangan");
 
+        buttonGroupTanamanPangan.add(adaPangan);
         adaPangan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adaPangan.setForeground(new java.awt.Color(0, 0, 0));
         adaPangan.setText("Ada");
 
+        buttonGroupTanamanPangan.add(tidakAdaPangan);
         tidakAdaPangan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tidakAdaPangan.setForeground(new java.awt.Color(0, 0, 0));
         tidakAdaPangan.setText("Tidak Ada");
@@ -232,10 +243,12 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Hortikultura");
 
+        buttonGroupHortikultura.add(adaHortikultura);
         adaHortikultura.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adaHortikultura.setForeground(new java.awt.Color(0, 0, 0));
         adaHortikultura.setText("Ada");
 
+        buttonGroupHortikultura.add(tidakAdaHortikultura);
         tidakAdaHortikultura.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tidakAdaHortikultura.setForeground(new java.awt.Color(0, 0, 0));
         tidakAdaHortikultura.setText("Tidak Ada");
@@ -248,10 +261,12 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Peternakan");
 
+        buttonGroupPeternakan.add(adaPeternakan);
         adaPeternakan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adaPeternakan.setForeground(new java.awt.Color(0, 0, 0));
         adaPeternakan.setText("Ada");
 
+        buttonGroupPeternakan.add(tidakAdaPeternakan);
         tidakAdaPeternakan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tidakAdaPeternakan.setForeground(new java.awt.Color(0, 0, 0));
         tidakAdaPeternakan.setText("Tidak Ada");
@@ -260,10 +275,12 @@ public class EntriPerusahaan extends javax.swing.JFrame {
                 new String[] { "-- Pilih Perkebunan --", "Kokoa/cokelat", "Karet", "Kelapa sawit", "Kopi", "Teh tebu",
                         "Tembakau", "Cengkeh", "Kelapa", "Lada", "Tanaman lainnya", "Tidak Ada" }));
 
+        buttonGroupKehutanan.add(tidakAdaKehutanan);
         tidakAdaKehutanan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tidakAdaKehutanan.setForeground(new java.awt.Color(0, 0, 0));
         tidakAdaKehutanan.setText("Tidak Ada");
 
+        buttonGroupKehutanan.add(adaKehutanan);
         adaKehutanan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adaKehutanan.setForeground(new java.awt.Color(0, 0, 0));
         adaKehutanan.setText("Ada");
@@ -276,10 +293,12 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Perikanan");
 
+        buttonGroupPerikanan.add(adaPerikanan);
         adaPerikanan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         adaPerikanan.setForeground(new java.awt.Color(0, 0, 0));
         adaPerikanan.setText("Ada");
 
+        buttonGroupPerikanan.add(tidakAdaPerikanan);
         tidakAdaPerikanan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tidakAdaPerikanan.setForeground(new java.awt.Color(0, 0, 0));
         tidakAdaPerikanan.setText("Tidak Ada");
@@ -706,6 +725,10 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void visitedRadioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_visitedRadioActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_visitedRadioActionPerformed
+
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_clearBtnActionPerformed
         // TODO add your handling code here:
         clearForm();
@@ -719,10 +742,6 @@ public class EntriPerusahaan extends javax.swing.JFrame {
     private void phoneTFActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_phoneTFActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_phoneTFActionPerformed
-
-    private void visitedRadioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_visitedRadioActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_visitedRadioActionPerformed
 
     private void provinsiComboActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_provinsiComboActionPerformed
         // TODO add your handling code here:
@@ -747,6 +766,7 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         perusahaan.setNoFax(faxTF.getText());
         perusahaan.setKodeKJU(kjuTF.getText());
         perusahaan.setBentukBadanHukum(bbhCombo.getSelectedItem().toString());
+        perusahaan.setKodeUrut(Integer.parseInt(urutTF.getText()));
         String visited = "";
         if (visitedRadio.isSelected()) {
             visited = "Sudah dikunjungi mendapatkan informasi dari pihak lain(dinas,dll)";
@@ -796,7 +816,7 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         PerusahaanRepository perusahaanRepository = new PerusahaanRepository(connection);
         perusahaanRepository.save(perusahaan);
         JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-//        clearForm();
+
     }// GEN-LAST:event_addBtnActionPerformed
 
     private void clearForm() {
@@ -806,19 +826,20 @@ public class EntriPerusahaan extends javax.swing.JFrame {
         alamatTA.setText("");
         phoneTF.setText("");
         faxTF.setText("");
+        kjuTF.setText("");
         bbhCombo.setSelectedIndex(0);
-        visitedRadio.setSelected(false);
         statusCombo.setSelectedIndex(0);
         provinsiCombo.setSelectedIndex(0);
         kabupatenCombo.setSelectedIndex(0);
         kecamatanCombo.setSelectedIndex(0);
         perkebunanCombo.setSelectedIndex(0);
         jenisUsahaUtamaCombo.setSelectedIndex(0);
-        adaPangan.setSelected(false);
-        adaHortikultura.setSelected(false);
-        adaPeternakan.setSelected(false);
-        adaPerikanan.setSelected(false);
-        adaKehutanan.setSelected(false);
+        buttonGroupVisited.clearSelection();
+        buttonGroupTanamanPangan.clearSelection();
+        buttonGroupHortikultura.clearSelection();
+        buttonGroupKehutanan.clearSelection();
+        buttonGroupPerikanan.clearSelection();
+        buttonGroupPeternakan.clearSelection();
     }
 
     /**
@@ -923,6 +944,12 @@ public class EntriPerusahaan extends javax.swing.JFrame {
     private javax.swing.JButton addBtn;
     private javax.swing.JTextArea alamatTA;
     private javax.swing.JComboBox<String> bbhCombo;
+    private javax.swing.ButtonGroup buttonGroupHortikultura;
+    private javax.swing.ButtonGroup buttonGroupKehutanan;
+    private javax.swing.ButtonGroup buttonGroupPerikanan;
+    private javax.swing.ButtonGroup buttonGroupPeternakan;
+    private javax.swing.ButtonGroup buttonGroupTanamanPangan;
+    private javax.swing.ButtonGroup buttonGroupVisited;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton clearBtn;
     private javax.swing.JTextField faxTF;
