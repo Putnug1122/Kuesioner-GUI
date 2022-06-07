@@ -24,7 +24,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class table2 extends javax.swing.JPanel {
 
-    int idRegisterSelected;
+    int idSelectedPerusahaan;
 
     /**
      * Creates new form table3
@@ -39,7 +39,7 @@ public class table2 extends javax.swing.JPanel {
 
     }
 
-    public void loadTablePerusahaan() {
+    public void loadTablePerusahaan(int idRegistrasi) {
         String sql = "SELECT * FROM perusahaan";
         try {
             Connection connection = DBConnection.getConnection();
@@ -148,15 +148,15 @@ public class table2 extends javax.swing.JPanel {
 
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         int id = Integer.parseInt(dtm.getValueAt(jTable1.getSelectedRow(), 0).toString());
-        this.idRegisterSelected = id;
+        this.idSelectedPerusahaan = id;
     }
 
-    public int getIdRegisterSelected() {
-        return idRegisterSelected;
+    public int getIdSelectedPerusahaan() {
+        return idSelectedPerusahaan;
     }
 
-    public void setIdRegisterSelected(int idRegisterSelected) {
-        this.idRegisterSelected = idRegisterSelected;
+    public void setIdSelectedPerusahaan(int idSelectedPerusahaan) {
+        this.idSelectedPerusahaan = idSelectedPerusahaan;
     }
 
     public JTable getjTable1() {
