@@ -647,7 +647,7 @@ public class EditPerusahaan extends javax.swing.JFrame {
         }
         String visited = "";
         if (visitedRadio.isSelected()) {
-            visited = "Sudah dikunjungi mendapatkan informasi dari pihak lain(dinas,dll)";
+            visited = "Sudah dikunjungi mendapatkan informasi dari pihak lain(dinas dll)";
         } else {
             visited = "Belum dikonfirmasi keberadaannya";
         }
@@ -822,7 +822,7 @@ public class EditPerusahaan extends javax.swing.JFrame {
                 faxTF.setText(rs.getString("no_faksimili"));
                 bbhCombo.setSelectedItem(rs.getString("bentuk_badan_hukum"));
                 boolean visited = rs.getString("visited")
-                        .equals("Sudah dikunjungi mendapatkan informasi dari pihak lain(dinas,dll)");
+                        .equals("Sudah dikunjungi mendapatkan informasi dari pihak lain(dinas dll)");
                 if (visited) {
                     visitedRadio.setSelected(true);
                 } else {

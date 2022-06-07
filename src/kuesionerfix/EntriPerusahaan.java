@@ -989,7 +989,7 @@ public class EntriPerusahaan extends javax.swing.JFrame {
                 }
                 String visited = "";
                 if (visitedRadio.isSelected()) {
-                        visited = "Sudah dikunjungi mendapatkan informasi dari pihak lain(dinas,dll)";
+                        visited = "Sudah dikunjungi mendapatkan informasi dari pihak lain(dinas dll)";
                 } else {
                         visited = "Belum dikonfirmasi keberadaannya";
                 }
