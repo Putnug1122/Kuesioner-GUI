@@ -40,7 +40,7 @@ public class table2 extends javax.swing.JPanel {
     }
 
     public void loadTablePerusahaan(int idRegistrasi) {
-        String sql = "SELECT * FROM perusahaan";
+        String sql = "SELECT * FROM perusahaan WHERE id_registrasi = '" + idRegistrasi + "'";
         try {
             Connection connection = DBConnection.getConnection();
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -49,6 +49,10 @@ public class table2 extends javax.swing.JPanel {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+    }
+    
+    public void searchByKecamatan(String idKabupaten) {
+        
     }
 
     /**
