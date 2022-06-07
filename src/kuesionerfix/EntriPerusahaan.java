@@ -983,6 +983,10 @@ public class EntriPerusahaan extends javax.swing.JFrame {
                         return;
                 }
                 perusahaan.setBentukBadanHukum(bbhCombo.getSelectedItem().toString());
+                if (buttonGroupVisited.getSelection() == null) {
+                        JOptionPane.showMessageDialog(this, "Kunjungan harus diisi");
+                        return;
+                }
                 String visited = "";
                 if (visitedRadio.isSelected()) {
                         visited = "Sudah dikunjungi mendapatkan informasi dari pihak lain(dinas,dll)";
@@ -995,6 +999,10 @@ public class EntriPerusahaan extends javax.swing.JFrame {
                         return;
                 }
                 perusahaan.setStatus(statusCombo.getSelectedItem().toString());
+                if (buttonGroupTanamanPangan.getSelection() == null) {
+                        JOptionPane.showMessageDialog(this, "Tanaman Pangan harus diisi");
+                        return;
+                }
                 String tanamanPangan = "";
                 if (adaPangan.isSelected()) {
                         tanamanPangan = "Ada";
@@ -1002,6 +1010,10 @@ public class EntriPerusahaan extends javax.swing.JFrame {
                         tanamanPangan = "Tidak Ada";
                 }
                 perusahaan.setTanamanPangan(tanamanPangan);
+                if (buttonGroupHortikultura.getSelection() == null) {
+                        JOptionPane.showMessageDialog(this, "Hortikultura harus diisi");
+                        return;
+                }
                 String hortikultura = "";
                 if (adaHortikultura.isSelected()) {
                         hortikultura = "Ada";
@@ -1014,6 +1026,10 @@ public class EntriPerusahaan extends javax.swing.JFrame {
                         return;
                 }
                 perusahaan.setPerkebunan(perkebunanCombo.getSelectedItem().toString());
+                if (buttonGroupPeternakan.getSelection() == null) {
+                        JOptionPane.showMessageDialog(this, "Peternakan harus diisi");
+                        return;
+                }
                 String peternakan = "";
                 if (adaPeternakan.isSelected()) {
                         peternakan = "Ada";
@@ -1021,6 +1037,10 @@ public class EntriPerusahaan extends javax.swing.JFrame {
                         peternakan = "Tidak Ada";
                 }
                 perusahaan.setPeternakan(peternakan);
+                if (buttonGroupPerikanan.getSelection() == null) {
+                        JOptionPane.showMessageDialog(this, "Perikanan harus diisi");
+                        return;
+                }
                 String perikanan = "";
                 if (adaPerikanan.isSelected()) {
                         perikanan = "Ada";
@@ -1028,6 +1048,10 @@ public class EntriPerusahaan extends javax.swing.JFrame {
                         perikanan = "Tidak Ada";
                 }
                 perusahaan.setPerikanan(perikanan);
+                if (buttonGroupKehutanan.getSelection() == null) {
+                        JOptionPane.showMessageDialog(this, "Kehutanan harus diisi");
+                        return;
+                }
                 String kehutanan = "";
                 if (adaKehutanan.isSelected()) {
                         kehutanan = "Ada";

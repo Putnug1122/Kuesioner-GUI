@@ -143,11 +143,13 @@ public class table2 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        int id = Integer.parseInt(model.getValueAt(jTable1.getSelectedRow(), 1).toString());
+        // TODO add your handling code here
+        // select id for clicked row
+
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        int id = Integer.parseInt(dtm.getValueAt(jTable1.getSelectedRow(), 0).toString());
         this.idRegisterSelected = id;
-    }// GEN-LAST:event_jTable1MouseClicked
+    }
 
     public int getIdRegisterSelected() {
         return idRegisterSelected;

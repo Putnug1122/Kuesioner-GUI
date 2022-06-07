@@ -1,6 +1,7 @@
 package kuesionerfix.entity;
 
 public class Perusahaan {
+  private int id;
   private String kodeProvinsi;
   private String kodeKabupaten;
   private String kodeKecamatan;
@@ -48,6 +49,14 @@ public class Perusahaan {
     this.kehutanan = kehutanan;
     this.perikanan = perikanan;
     this.jenisUsahaUtama = jenisUsahaUtama;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getKodeProvinsi() {
