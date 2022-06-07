@@ -74,4 +74,16 @@ public class PerusahaanRepository {
       JOptionPane.showMessageDialog(null, e.getMessage());
     }
   }
+
+  public void delete(int idPerusahaan) {
+    String sql = "DELETE FROM perusahaan WHERE id = ?";
+    try {
+      PreparedStatement statement = connection.prepareStatement(sql);
+      statement.setInt(1, idPerusahaan);
+      statement.executeUpdate();
+      JOptionPane.showMessageDialog(null, "Data Perusahaan Berhasil Dihapus!");
+    } catch (SQLException e) {
+      JOptionPane.showMessageDialog(null, e.getMessage());
+    }
+  }
 }
