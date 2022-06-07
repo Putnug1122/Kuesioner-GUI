@@ -24,7 +24,8 @@ import net.proteanit.sql.DbUtils;
  */
 public class table2 extends javax.swing.JPanel {
 
-    int idSelectedPerusahaan;
+    private int idSelectedPerusahaan;
+    private int idRegistrasi;
 
     /**
      * Creates new form table3
@@ -39,7 +40,7 @@ public class table2 extends javax.swing.JPanel {
 
     }
 
-    public void loadTablePerusahaan(int idRegistrasi) {
+    public void loadTablePerusahaan() {
         String sql = "SELECT * FROM perusahaan WHERE id_registrasi = '" + idRegistrasi + "'";
         try {
             Connection connection = DBConnection.getConnection();
@@ -50,9 +51,21 @@ public class table2 extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
-    public void searchByKecamatan(String idKabupaten) {
-        
+
+    public void searchByKecamatan(String kodeKecamatan) {
+        if (kodeKecamatan.contains("--")) {
+            loadTablePerusahaan();
+            return;
+        }
+        String sql = "SELECT * FROM perusahaan WHERE kode_kec = '" + kodeKecamatan + "'";
+        try {
+            Connection connection = DBConnection.getConnection();
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }
 
     /**
@@ -153,6 +166,14 @@ public class table2 extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         int id = Integer.parseInt(dtm.getValueAt(jTable1.getSelectedRow(), 0).toString());
         this.idSelectedPerusahaan = id;
+    }
+
+    public int getIdRegistrasi() {
+        return idRegistrasi;
+    }
+
+    public void setIdRegistrasi(int idRegistrasi) {
+        this.idRegistrasi = idRegistrasi;
     }
 
     public int getIdSelectedPerusahaan() {

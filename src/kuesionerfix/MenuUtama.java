@@ -96,6 +96,23 @@ public class MenuUtama extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
         }
     }
+    
+    public void loadComboboxKecamatan() {
+        
+        String kodeKab = kabupaten.get(tabelRegistrasi.getKabupaten());
+        
+        String sql = "SELECT * FROM kecamatan WHERE id_kab = '" + kodeKab + "'";
+        Connection connection = DBConnection.getConnection();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                comboBoxKecamatan.addItem(rs.getString("nama"));
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Data tidak ditemukan");
+        }
+    }
 
     // public void loadComboboxKabupaten1() {
     // String kodeProv = provinsi.get(comboBoxProv1.getSelectedItem());
@@ -174,7 +191,7 @@ public class MenuUtama extends javax.swing.JFrame {
         editPerusahaanBtn = new javax.swing.JButton();
         deletePerusahaanBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table21 = new kuesionerfix.components.table2();
+        tabelPerusahaan = new kuesionerfix.components.table2();
         exportCSVBtn = new javax.swing.JButton();
         approveBtn = new javax.swing.JButton();
 
@@ -693,7 +710,7 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(table21);
+        jScrollPane1.setViewportView(tabelPerusahaan);
 
         exportCSVBtn.setBackground(new java.awt.Color(51, 102, 255));
         exportCSVBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -769,10 +786,10 @@ public class MenuUtama extends javax.swing.JFrame {
             try {
                 FileWriter writer = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(writer);
-                for (int i = 0; i < table21.getjTable1().getRowCount(); i++) {
-                    for (int j = 0; j < table21.getjTable1().getColumnCount(); j++) {
-                        if (table21.getjTable1().getValueAt(i, j) != null) {
-                            bw.write(table21.getjTable1().getValueAt(i, j).toString() + ",");
+                for (int i = 0; i < tabelPerusahaan.getjTable1().getRowCount(); i++) {
+                    for (int j = 0; j < tabelPerusahaan.getjTable1().getColumnCount(); j++) {
+                        if (tabelPerusahaan.getjTable1().getValueAt(i, j) != null) {
+                            bw.write(tabelPerusahaan.getjTable1().getValueAt(i, j).toString() + ",");
                         } else {
                             bw.write("");
                         }
@@ -828,7 +845,9 @@ public class MenuUtama extends javax.swing.JFrame {
         int idRegistrasi = tabelRegistrasi.getIdRegisterSelected();
         if (idRegistrasi != 0) {
             jTabbedPane1.setSelectedIndex(2);
-            table21.loadTablePerusahaan(idRegistrasi);
+            tabelPerusahaan.setIdRegistrasi(idRegistrasi);
+            tabelPerusahaan.loadTablePerusahaan();
+            loadComboboxKecamatan();
         } else {
             JOptionPane.showMessageDialog(this, "Pilih registrasi terlebih dahulu");
         }
@@ -917,18 +936,18 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void editPerusahaanBtnMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_editPerusahaanBtnMouseClicked
         // TODO add your handling code here:
-        if (table21.getIdSelectedPerusahaan() == 0) {
+        if (tabelPerusahaan.getIdSelectedPerusahaan() == 0) {
             JOptionPane.showMessageDialog(this, "Pilih registrasi terlebih dahulu");
             return;
         }
-        EditPerusahaan editPerusahaan = new EditPerusahaan(table21.getIdSelectedPerusahaan());
+        EditPerusahaan editPerusahaan = new EditPerusahaan(tabelPerusahaan.getIdSelectedPerusahaan());
         editPerusahaan.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         editPerusahaan.setVisible(true);
     }// GEN-LAST:event_editPerusahaanBtnMouseClicked
 
     private void deletePerusahaanBtnMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_deletePerusahaanBtnMouseClicked
         // TODO add your handling code here:
-        int idPerusahaan = table21.getIdSelectedPerusahaan();
+        int idPerusahaan = tabelPerusahaan.getIdSelectedPerusahaan();
         if (idPerusahaan == 0) {
             JOptionPane.showMessageDialog(this, "Pilih registrasi terlebih dahulu");
             return;
@@ -944,6 +963,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
+        tabelPerusahaan.searchByKecamatan(comboBoxKecamatan.getSelectedItem().toString());
     }// GEN-LAST:event_jButton6MouseClicked
 
     /**
@@ -1040,7 +1060,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JButton readRegisBtn;
     private javax.swing.JPanel registrasiTab;
     private javax.swing.JPanel sidebarPanel;
+    private kuesionerfix.components.table2 tabelPerusahaan;
     private kuesionerfix.components.table tabelRegistrasi;
-    private kuesionerfix.components.table2 table21;
     // End of variables declaration//GEN-END:variables
 }

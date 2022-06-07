@@ -1033,7 +1033,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="kuesionerfix.components.table2" name="table21">
+                <Component class="kuesionerfix.components.table2" name="tabelPerusahaan">
                 </Component>
               </SubComponents>
             </Container>
