@@ -26,6 +26,7 @@ import net.proteanit.sql.DbUtils;
 public class table extends javax.swing.JPanel {
 
     private int idRegisterSelected;
+    private String provinsi;
     private String kabupaten;
 
     /**
@@ -186,8 +187,10 @@ public class table extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         int id = Integer.parseInt(dtm.getValueAt(jTable1.getSelectedRow(), 0).toString());
         this.idRegisterSelected = id;
-        String kodeKabupaten = dtm.getValueAt(jTable1.getSelectedRow(), 3).toString();
-        this.kabupaten = kodeKabupaten;
+        String currentProv = dtm.getValueAt(jTable1.getSelectedRow(), 2).toString();
+        setProvinsi(currentProv);
+        String currentKab = dtm.getValueAt(jTable1.getSelectedRow(), 3).toString();
+        setKabupaten(currentKab);
     }//GEN-LAST:event_jTable1MouseClicked
 
     public int getIdRegisterSelected() {
@@ -205,8 +208,15 @@ public class table extends javax.swing.JPanel {
     public void setjTable1(JTable jTable1) {
         this.jTable1 = jTable1;
     }
-    
-    
+
+    public String getProvinsi() {
+        return provinsi;
+    }
+
+    public void setProvinsi(String provinsi) {
+        this.provinsi = provinsi;
+    }
+
     public String getKabupaten() {
         return kabupaten;
     }
@@ -214,7 +224,6 @@ public class table extends javax.swing.JPanel {
     public void setKabupaten(String kabupaten) {
         this.kabupaten = kabupaten;
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

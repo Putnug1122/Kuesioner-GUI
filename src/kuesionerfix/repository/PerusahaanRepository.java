@@ -15,7 +15,7 @@ public class PerusahaanRepository {
   }
 
   public void save(Perusahaan perusahaan) {
-    String sql = "INSERT INTO perusahaan (kode_prov, kode_kab, kode_kec, kode_kju, no_urut, nama_perusahaan, alamat_perusahaan, no_phone, no_faksimili, bentuk_badan_hukum, visited, status, tanaman_pangan, hortikultura, perkebunan, peternakan, kehutanan, perikanan, jenis_usaha_utama) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO perusahaan (kode_prov, kode_kab, kode_kec, kode_kju, no_urut, nama_perusahaan, alamat_perusahaan, no_phone, no_faksimili, bentuk_badan_hukum, visited, status, tanaman_pangan, hortikultura, perkebunan, peternakan, kehutanan, perikanan, jenis_usaha_utama, id_registrasi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     try {
       PreparedStatement statement = connection.prepareStatement(sql);
       statement.setString(1, perusahaan.getKodeProvinsi());
@@ -37,6 +37,7 @@ public class PerusahaanRepository {
       statement.setString(17, perusahaan.getKehutanan());
       statement.setString(18, perusahaan.getPerikanan());
       statement.setString(19, perusahaan.getJenisUsahaUtama());
+      statement.setInt(20, perusahaan.getIdRegistrasi());
       statement.executeUpdate();
       JOptionPane.showMessageDialog(null, "Data Perusahaan Berhasil Ditambahkan!");
     } catch (SQLException e) {
