@@ -27,7 +27,14 @@ public class UserLogin {
         UserLogin.idProv = idProv;
         UserLogin.role = role;
     }
-    
+
+    public static void setUserLogin(int id, String name, String username, String role) {
+        UserLogin.id = id;
+        UserLogin.name = name;
+        UserLogin.username = username;
+        UserLogin.role = role;
+    }
+
     public static void destroyUserLogin() {
         UserLogin.id = 0;
         UserLogin.name = "";
