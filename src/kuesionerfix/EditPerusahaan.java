@@ -34,6 +34,8 @@ public class EditPerusahaan extends javax.swing.JFrame {
         this.idPerusahaan = idPerusahaan;
         loadComboboxProv();
         loadPerusahaanEdit();
+        provinsiCombo.setEnabled(false);
+        kabupatenCombo.setEnabled(false);
     }
 
     /**
