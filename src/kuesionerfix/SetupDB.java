@@ -18,6 +18,11 @@ public class SetupDB extends javax.swing.JFrame {
      */
     public SetupDB() {
         initComponents();
+        hostInput.setText(DBConnection.getHost());
+        portInput.setText(String.format("%d", DBConnection.getPort()));
+        databaseInput.setText(DBConnection.getDatabase());
+        username.setText(DBConnection.getUsername());
+        passwordFd.setText(DBConnection.getPassword());
     }
 
     /**

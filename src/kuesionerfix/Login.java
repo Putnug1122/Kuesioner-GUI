@@ -30,7 +30,7 @@ public class Login extends javax.swing.JFrame {
     
     public void scaleImage() {
 
-        ImageIcon icon = new ImageIcon("./src/kuesionerfix/icon/login-935679.png");
+        ImageIcon icon = new ImageIcon("./icon/login-935679.png");
 
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(logoLogin.getWidth(), logoLogin.getHeight(), Image.SCALE_SMOOTH);
@@ -69,14 +69,14 @@ public class Login extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(logoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addComponent(logoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(183, Short.MAX_VALUE)
-                .addComponent(logoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(142, 142, 142))
         );
 

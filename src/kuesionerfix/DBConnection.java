@@ -19,11 +19,11 @@ import kuesionerfix.entity.UserLogin;
 public class DBConnection {
     
     private static Connection con;
-    private static String host;
-    private static int port;
-    private static String database;
-    private static String username;
-    private static String password;
+    private static String host = "localhost";
+    private static int port = 3306;
+    private static String database = "kuesioner_1";
+    private static String username = "root";
+    private static String password = "";
     
     public static Connection getConnection() {
         if (con == null) {

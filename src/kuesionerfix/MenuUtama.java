@@ -99,7 +99,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     public void scaleImage() {
 
-        ImageIcon icon = new ImageIcon("./src/kuesionerfix/icon/PngItem_786293.png");
+        ImageIcon icon = new ImageIcon("./icon/PngItem_786293.png");
 
         Image img = icon.getImage();
         Image imgScale = img.getScaledInstance(avatar.getWidth(), avatar.getHeight(), Image.SCALE_SMOOTH);
@@ -260,7 +260,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         sidebarPanel.setBackground(new java.awt.Color(0, 102, 255));
         sidebarPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        sidebarPanel.add(avatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 210, 190));
+        sidebarPanel.add(avatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 200, 200));
 
         greetings.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         greetings.setForeground(new java.awt.Color(255, 255, 255));
