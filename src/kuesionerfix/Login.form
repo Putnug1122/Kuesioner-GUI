@@ -80,7 +80,11 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="61" pref="61" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="loginBtn" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="loginBtn" min="-2" pref="85" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="setupBtn" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="jLabel2" min="-2" pref="98" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="194" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
@@ -107,7 +111,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="passwordFd" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="loginBtn" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="loginBtn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="setupBtn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="102" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -170,6 +177,20 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="setupBtn">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Setup Database"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setupBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
