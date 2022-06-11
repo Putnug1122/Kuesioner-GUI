@@ -26,6 +26,7 @@ import javax.swing.table.TableModel;
 import kuesionerfix.entity.User;
 import kuesionerfix.entity.UserLogin;
 import kuesionerfix.repository.PerusahaanRepository;
+import kuesionerfix.repository.RegistrasiRepo;
 import kuesionerfix.repository.UserRepo;
 
 /**
@@ -781,6 +782,11 @@ public class MenuUtama extends javax.swing.JFrame {
         approveBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         approveBtn.setForeground(new java.awt.Color(255, 255, 255));
         approveBtn.setText("Approve");
+        approveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout perusahaanTabLayout = new javax.swing.GroupLayout(perusahaanTab);
         perusahaanTab.setLayout(perusahaanTabLayout);
@@ -912,6 +918,12 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadComboboxKecamatan();
     }//GEN-LAST:event_comboBoxKecamatanPropertyChange
+
+    private void approveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveBtnActionPerformed
+        // TODO add your handling code here:
+        RegistrasiRepo registrasiRepo = new RegistrasiRepo(DBConnection.getConnection());
+        registrasiRepo.approveRegistrasi(tabelPerusahaan.getIdRegistrasi());
+    }//GEN-LAST:event_approveBtnActionPerformed
 
     private void addOperatorTextMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_addOperatorTextMouseClicked
         // TODO add your handling code here:
